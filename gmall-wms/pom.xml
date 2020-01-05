@@ -15,7 +15,9 @@
     <description>谷粒商城仓库管理系统</description>
 
     <properties>
+        <!--需要在gmall-pms中定义mysql的版本号，以覆盖父父工程的版本号：-->
         <java.version>1.8</java.version>
+        <mysql.version>5.1.46</mysql.version>
     </properties>
 
     <dependencies>
@@ -54,7 +56,18 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
+    <!-- SpringCloud的依赖 -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Greenwich.SR2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <build>
         <plugins>
             <plugin>

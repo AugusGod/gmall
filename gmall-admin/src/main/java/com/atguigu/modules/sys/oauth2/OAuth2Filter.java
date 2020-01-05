@@ -8,9 +8,10 @@
 
 package com.atguigu.modules.sys.oauth2;
 
-import com.google.gson.Gson;
+
 import com.atguigu.common.utils.HttpContextUtils;
 import com.atguigu.common.utils.R;
+import com.google.gson.Gson;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpStatus;
 import org.apache.shiro.authc.AuthenticationException;
