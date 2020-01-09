@@ -1,12 +1,15 @@
 package com.atguigu.gmall.wms.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 
+import ch.qos.logback.core.pattern.util.RegularEscapeUtil;
 import com.atguigu.core.bean.PageVo;
 import com.atguigu.core.bean.QueryCondition;
 import com.atguigu.core.bean.Resp;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +35,18 @@ import com.atguigu.gmall.wms.service.WareSkuService;
 public class WareSkuController {
     @Autowired
     private WareSkuService wareSkuService;
+    @RequestMapping("wms/waresku/{skuId}")
+    public Resp<List<WareSkuEntity>> queryWareSkuBySkuId(@PathVariable("skuId")Long skuId)
+    {
+        List<WareSkuEntity> list = this.wareSkuService.list(new QueryWrapper<WareSkuEntity>().eq("sku_Id",skuId));
+        return Resp.ok(list);
+
+    }
+
+
+
+
+
 
     /**
      * 列表

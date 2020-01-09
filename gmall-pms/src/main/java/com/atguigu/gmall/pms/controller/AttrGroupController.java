@@ -1,12 +1,13 @@
 package com.atguigu.gmall.pms.controller;
 
 import java.util.Arrays;
-import java.util.Map;
+import java.util.List;
 
 
 import com.atguigu.core.bean.PageVo;
 import com.atguigu.core.bean.QueryCondition;
 import com.atguigu.core.bean.Resp;
+import com.atguigu.gmall.pms.vo.GroupVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +31,41 @@ import com.atguigu.gmall.pms.service.AttrGroupService;
 @RestController
 @RequestMapping("pms/attrgroup")
 public class AttrGroupController {
+@ApiOperation("根据三级分类id查询分组及分组下的规格参数")
+@GetMapping("/withattrs/cat/{catId}")
+public  Resp<List<GroupVo>> queryByCid(@PathVariable("catId") Long catId ){
+      List<GroupVo> list=this.attrGroupService
+              .queryByCid(catId);
+      return  Resp.ok(list);
+}
+
+
+
+
+
+
     @Autowired
     private AttrGroupService attrGroupService;
+    @ApiOperation("根据分组id查询分组及组下的规格参数")
+    @GetMapping("withattr/{gid}")
+    public Resp<GroupVo> queryById(@PathVariable("gid")Long gid){
+        GroupVo groupVO = this.attrGroupService.queryById(gid);
+        return Resp.ok(groupVO);
+}
 
+
+
+
+
+    @ApiOperation("根据三级分类id分页查询")
+    @GetMapping("{cid}")
+
+    public Resp<PageVo> queryByCidPage(QueryCondition queryCondition,
+       @PathVariable("cid") Long cid               ) {
+        PageVo page = this.attrGroupService.queryByCidPage(queryCondition,cid);
+
+        return Resp.ok(page);
+    }
     /**
      * 列表
      */
