@@ -80,7 +80,7 @@ public  Resp<List<GroupVo>> queryByCid(@PathVariable("catId") Long catId ){
 
 
     /**
-     * 信息
+     * 信息111
      */
     @ApiOperation("详情查询")
     @GetMapping("/info/{attrGroupId}")
